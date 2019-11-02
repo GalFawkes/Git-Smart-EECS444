@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/fluent-hc-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpclient-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpclient-cache-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpclient-osgi-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpclient-win-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpcore-4.4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/httpmime-4.5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/jna-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/httpcomponents-client-4.5.10/lib/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-io-2.6/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-io-2.6/commons-io-2.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-io-2.6/commons-io-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-io-2.6/commons-io-2.6-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-io-2.6/commons-io-2.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-compress-1.19/commons-compress-1.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-compress-1.19/commons-compress-1.19-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-compress-1.19/commons-compress-1.19-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-compress-1.19/commons-compress-1.19-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github Malicious Code Research/lib/commons-compress-1.19/commons-compress-1.19-test-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

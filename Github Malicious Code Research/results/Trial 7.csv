@@ -1,0 +1,9 @@
+Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method
+0,SoftwareSecurity_HW2,https://github.com/CSho27/SoftwareSecurity_HW2,https://www.virustotal.com/gui/file/160102b512cdfb830acabc209bc99f4c7d026c5337aa4b9bdd617e7ebd464819/detection/,[23/57],
+1,PracticalMalwareAnalysis-Labs,https://github.com/mikesiko/PracticalMalwareAnalysis-Labs,https://www.virustotal.com/gui/file/0d869a633b4bafb3936d59266f6069770f078c22ac7c0ba9d494455d4394c2ce/detection/,[31/49],
+2,folio-2019,https://github.com/brunosimon/folio-2019,https://www.virustotal.com/gui/file/2428563d3b8758715843f9269570f9d0d10eaa0e2a68e35b329d38024c560481/detection/,[0/57],
+3,phuip-fpizdam,https://github.com/neex/phuip-fpizdam,https://www.virustotal.com/gui/file/fed5505952c50487878d318e0f2e0b2b9c6a032cbd397eebefd7d315a0f46237/detection/,[0/57],
+4,polynote,https://github.com/polynote/polynote,https://www.virustotal.com/gui/file/378fb7db0f8eedb3674e697ff4b0fa4dc80cc61d4676b5cdc195a0b57c68fd73/detection/,[0/57],
+5,vue-interactive-paycard,https://github.com/muhammederdem/vue-interactive-paycard,https://www.virustotal.com/gui/file/55470d908c6f18c36ae32b4688bee4e4aaea23ef8287d05b794867f40f90bf10/detection/,[0/59],
+6,PowerToys,https://github.com/microsoft/PowerToys,https://www.virustotal.com/gui/file/c891514e27efc8a89a119d9298dba9a5c8268be96c042c9c0bd70258734bef76/detection/,[0/58],
+7,shadowsocks-android,https://github.com/shadowsocks/shadowsocks-android,https://www.virustotal.com/gui/file/a7b66640ecb2350995db5fe2fbb7a8acd7f81911f4581e3ba53fbe1779107787/detection/,[0/56],
