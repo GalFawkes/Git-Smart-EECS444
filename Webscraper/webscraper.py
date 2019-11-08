@@ -11,3 +11,4 @@ url = 'https://github.com/topics/cpp'
 
 repoList = scrape.getAllValues()
 scrape.exportToCSV("scraperresults.csv", repoList)
+scrape.cleanupCSV("scraperresults.csv")

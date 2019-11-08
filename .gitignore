@@ -6,5 +6,4 @@
 *.pdf
 *.out
 *.gz
-Webscraper/scraperresults.csv
 Webscraper/__pycache__/*

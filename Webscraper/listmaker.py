@@ -36,7 +36,7 @@ def makeProjectList(reg, projectList, soup):
             if not "topics" in rmt.group():
                 if not "site" in rmt.group():
                     if not "about" in rmt.group():
-                        projectList.append(rmt.group())
+                        projectList.append("https://github.com" + rmt.group())
 
 def getTopics():
     response = requests.get("https://github.com/topics/")
@@ -50,12 +50,36 @@ def getTopics():
         if rmt is not None:
             if not "site" in rmt.group():
                 if not "about" in rmt.group():
-                    topicList.append("https://github.com" +rmt.group())
+                    topicList.append("https://github.com" + rmt.group())
     topicList = list(dict.fromkeys(topicList))
     return topicList
 
 def exportToCSV(path, projectList):
+    f = open(path, "r")
+    line = f.readline()
+    currentList = []
+    while line:
+        currentList.append(line)
+        line = f.readline()
+    f.close()
     f = open(path, "a+")
+    for url in line:
+        projectList.append(url)
     for link in projectList:
-        f.write("https://github.com"+link+"\n")
+        f.write(link+"\n")
+    f.close()
+
+
+def cleanupCSV(path):
+    topicsList = []
+    f = open(path, "r")
+    line = f.readline()
+    while line:
+        topicsList.append(line)
+        line = f.readline()
+    topicsList = list(dict.fromkeys(topicsList))
+    f.close()
+    f = open(path, "w")
+    for url in topicsList:
+        f.write(url)
     f.close()
