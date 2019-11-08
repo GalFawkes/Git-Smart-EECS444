@@ -7,7 +7,7 @@ url = 'https://github.com/topics/cpp'
 #   repoList = scrape.getProjectList(url)
 #   scrape.exportToCSV("scraperresults.csv", repoList)
 
-#EXPORTTOCSV DOES NOT CHECK FOR DUPLICATES 
+#EXPORTTOCSV DOES NOT CHECK FOR DUPLICATES
 
-repoList = scrape.getProjectList(url)
+repoList = scrape.getAllValues()
 scrape.exportToCSV("scraperresults.csv", repoList)

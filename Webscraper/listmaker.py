@@ -5,6 +5,17 @@ import time
 import re
 from bs4 import BeautifulSoup
 
+def getAllValues():
+    tList = getTopics()
+    topicsList = []
+    for url in tList:
+        print(url)
+        plist = getProjectList(url)
+        for p in plist:
+            topicsList.append(p)
+    return topicsList
+
+
 def getProjectList(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -27,8 +38,24 @@ def makeProjectList(reg, projectList, soup):
                     if not "about" in rmt.group():
                         projectList.append(rmt.group())
 
+def getTopics():
+    response = requests.get("https://github.com/topics/")
+    soup = BeautifulSoup(response.text, "html.parser")
+    topicList = []
+    reg = re.compile("/topics/\w+")
+    for i in range(36, len(soup.findAll('a'))):
+        one_a_tag = soup.findAll('a')[i]
+        target = one_a_tag.get('href')
+        rmt = reg.match(target)
+        if rmt is not None:
+            if not "site" in rmt.group():
+                if not "about" in rmt.group():
+                    topicList.append("https://github.com" +rmt.group())
+    topicList = list(dict.fromkeys(topicList))
+    return topicList
+
 def exportToCSV(path, projectList):
-    f = open(path, "a")
+    f = open(path, "a+")
     for link in projectList:
         f.write("https://github.com"+link+"\n")
     f.close()
