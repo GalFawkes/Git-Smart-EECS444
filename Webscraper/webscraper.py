@@ -1,4 +1,5 @@
 import listmaker as scrape
+import time
 
 url = 'https://github.com/topics/cpp'
 # use a list of URLs and iterate through them for popular topics scraping
@@ -9,6 +10,8 @@ url = 'https://github.com/topics/cpp'
 
 #EXPORTTOCSV DOES NOT CHECK FOR DUPLICATES
 
-repoList = scrape.getAllValues()
-scrape.exportToCSV("scraperresults.csv", repoList)
-scrape.cleanupCSV("scraperresults.csv")
+for x in xrange (0,20):
+    repoList = scrape.getAllValues()
+    scrape.exportToCSV("scraperresults.csv", repoList)
+    scrape.cleanupCSV("scraperresults.csv")
+    time.sleep(900)
