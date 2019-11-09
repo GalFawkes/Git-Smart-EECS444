@@ -1,5 +1,6 @@
 import listmaker as scrape
 import time
+import datetime
 
 url = 'https://github.com/topics/cpp'
 # use a list of URLs and iterate through them for popular topics scraping
@@ -11,7 +12,7 @@ url = 'https://github.com/topics/cpp'
 #EXPORTTOCSV DOES NOT CHECK FOR DUPLICATES
 
 for x in range(0,20):
-    print("iteration " + x)
+    print("iteration " +  + datetime.now().strftime(%H:%M:%S))
     repoList = scrape.getAllValues()
     scrape.exportToCSV("scraperresults.csv", repoList)
     scrape.cleanupCSV("scraperresults.csv")
