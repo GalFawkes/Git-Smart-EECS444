@@ -12,7 +12,7 @@ url = 'https://github.com/topics/cpp'
 #EXPORTTOCSV DOES NOT CHECK FOR DUPLICATES
 
 for x in range(0,20):
-    print("iteration " +  + datetime.now().strftime(%H:%M:%S))
+    print("Iteration " + datetime.datetime.now().strftime("%H:%M:%S"))
     repoList = scrape.getAllValues()
     scrape.exportToCSV("scraperresults.csv", repoList)
     scrape.cleanupCSV("scraperresults.csv")
