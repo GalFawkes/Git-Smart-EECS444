@@ -1,17 +1,24 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class RepositoryAnalysis {
 	public static double ALLOWED_CALLS_PER_DAY = 19000;
-	public static double SECONDS_PER_DAY = 86400; 
-	
+	public static double SECONDS_PER_DAY = 86400;
+
 	public static String resultsDirectory = "\\results\\";
 	public static String header = "Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method\n";
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
+		File repos = new File(args[0]);
+		analyzeRepos(repos);
+	}
+
+	public static void analyzeRepos(File repoFile){
 		File results = nextResultFile();
 		writeToFile(results, header);
 		
@@ -20,60 +27,13 @@ public class RepositoryAnalysis {
 		int resultsPrinted = 0;
 		ArrayList<VirusChecker> checks = new ArrayList<VirusChecker>();
 		
-		String[] repositories = {
-				"https://github.com/CSho27/SoftwareSecurity_HW2",
-				"https://github.com/mikesiko/PracticalMalwareAnalysis-Labs",
-				"https://github.com/brunosimon/folio-2019",
-				"https://github.com/neex/phuip-fpizdam",
-				"https://github.com/polynote/polynote",
-				"https://github.com/muhammederdem/vue-interactive-paycard",
-				"https://github.com/microsoft/PowerToys",
-				"https://github.com/shadowsocks/shadowsocks-android",
-				"https://github.com/iptv-org/iptv",
-				"https://github.com/evilsocket/pwnagotchi",
-				"https://github.com/vlang/v",
-				"https://github.com/geekcomputers/Python",
-				"https://github.com/TheAlgorithms/Java",
-				"https://github.com/robbyrussell/oh-my-zsh",
-				"https://github.com/home-assistant/home-assistant",
-				"https://github.com/axi0mX/ipwndfu",
-				"https://github.com/mitesh77/Best-Flutter-UI-Templates",
-				"https://github.com/storybookjs/storybook",
-				"https://github.com/nvbn/thefuck",
-				"https://github.com/elunez/eladmin",
-				"https://github.com/2dust/v2rayN",
-				"https://github.com/pytorch/pytorch",
-				"https://github.com/llvm/llvm-project",
-				"https://github.com/sinclairzx81/zero",
-				"https://github.com/hoanhan101/ultimate-go",
-				"https://github.com/hsoft/collapseos",
-				"https://github.com/kmario23/deep-learning-drizzle",
-				"https://github.com/o2sh/onefetch",
-				"https://github.com/deepstreamIO/deepstream.io",
-				"https://github.com/gin-gonic/gin",
-				"https://github.com/ruanyf/free-books",
-				"https://github.com/google-research/google-research",
-				"https://github.com/davidkpiano/xstate",
-				"https://github.com/bitcoin/bitcoin",
-				"https://github.com/geekcomputers/Python",
-				"https://github.com/pubkey/rxdb",
-				"https://github.com/bitcoinbook/bitcoinbook",
-				"https://github.com/GoAdminGroup/go-admin",
-				"https://github.com/aholachek/mobile-first-animation",
-				"https://github.com/Tikam02/DevOps-Guide",
-				"https://github.com/google/eng-practices",
-				"https://github.com/521xueweihan/HelloGitHub",
-				"https://github.com/GuoZhaoran/spikeSystem",
-				"https://github.com/frank-lam/fullstack-tutorial",
-				"https://github.com/google-research/bert",
-				"https://github.com/godotengine/godot"
-		};
+		int repos = getNumberOfRepos(repoFile);
 		
 		int scannedRepositories=0;
-		while(resultsPrinted < checks.size() || scannedRepositories<repositories.length){
+		while(resultsPrinted < checks.size() || scannedRepositories<repos){
 			//Scan any unscanned repositories
-			if(scannedRepositories<repositories.length){
-				String repo = repositories[scannedRepositories];
+			if(scannedRepositories<repos){
+				String repo = readLine(repoFile, scannedRepositories);
 				System.out.println("downloading... "+repo);
 				RepositoryHandler rph = new RepositoryHandler(repo);
 				flowControl(calls, startTime);
@@ -108,12 +68,47 @@ public class RepositoryAnalysis {
 		System.out.println("Rate (calls/month): "+(calls*SECONDS_PER_DAY*30)/timeSinceStart);
 		
 	}
-	
-	public static double secondsSinceStart(long startTime){
+
+	public static double secondsSinceStart(long startTime) {
 		return (System.currentTimeMillis() - startTime) / 1000.0;
 	}
 	
-	public static void writeToFile(File file, String string){
+	public static int getNumberOfRepos(File file){
+		BufferedReader reader;
+		int repos = 0;
+		try {
+			FileReader freader = new FileReader(file);
+			reader = new BufferedReader(freader);
+			while(reader.readLine() != null){
+				repos++;
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.getMessage();
+			System.exit(1);
+		}
+		return repos;
+	}
+	
+	public static String readLine(File file, int line){
+		BufferedReader reader;
+		String ret = "";
+		try {
+			FileReader freader = new FileReader(file);
+			reader = new BufferedReader(freader);
+			for(int i=0; i<line; i++){
+				reader.readLine();
+			}
+			ret = reader.readLine();
+			reader.close();
+		} catch (IOException e) {
+			e.getMessage();
+			System.exit(1);
+		}
+		return ret;
+	}
+
+	public static void writeToFile(File file, String string) {
 		BufferedWriter writer = null;
 		try {
 			FileWriter fwriter = new FileWriter(file, true);
@@ -121,50 +116,50 @@ public class RepositoryAnalysis {
 			writer.write(string);
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.getMessage();
 			System.exit(1);
 		}
 	}
-	
-	public static File nextResultFile(){
-		File resultsFolder = new File(System.getProperty("user.dir")+resultsDirectory);
+
+	public static File nextResultFile() {
+		File resultsFolder = new File(System.getProperty("user.dir") + resultsDirectory);
 		File[] resultFiles = resultsFolder.listFiles();
+		int lastTrialNum = 0;
 		
-		if(resultFiles.length > 0){
-			File lastRun = resultFiles[resultFiles.length-1];
-			String[] spaceSplit = lastRun.getName().split(" ");
-			if(spaceSplit.length>0){
+		for(File file : resultFiles){
+			String[] spaceSplit = file.getName().split(" ");
+			if (spaceSplit.length > 0) {
 				String[] dotSplit = spaceSplit[1].split("\\.");
-				if(dotSplit.length > 0){
+				if (dotSplit.length > 0) {
 					int trialNum = Integer.parseInt(dotSplit[0]);
-					return new File(resultsFolder.getAbsolutePath()+"\\Trial "+(trialNum+1)+".csv");
+					if(trialNum > lastTrialNum){
+						lastTrialNum = trialNum;
+					}
 				}
 			}
-			System.out.println("ERROR: invalid file included");
-			return null;
-		} else {
-			return new File(resultsFolder.getAbsolutePath()+"\\Trial 1.csv");
 		}
+		
+		return new File(resultsFolder.getAbsolutePath() + "\\Trial " + (lastTrialNum + 1) + ".csv");
 	}
-	
-	
-	public static String resultsToString(String repository, VirusCheck result){
+
+	public static String resultsToString(String repository, VirusCheck result) {
 		String string = "";
-		string += "-"+result.getRepo()+": "+result.getStatus()+" ["+result.response.positives+"/"+result.response.total+"]\n";
+		string += "-" + result.getRepo() + ": " + result.getStatus() + " [" + result.response.positives + "/"
+				+ result.response.total + "]\n";
 		return string;
 	}
-	
-	public static void flowControl(long calls, long startTime){
-		Double callsPerDay = (calls*SECONDS_PER_DAY)/secondsSinceStart(startTime);
-		if(callsPerDay > ALLOWED_CALLS_PER_DAY){
+
+	public static void flowControl(long calls, long startTime) {
+		Double callsPerDay = (calls * SECONDS_PER_DAY) / secondsSinceStart(startTime);
+		if (callsPerDay > ALLOWED_CALLS_PER_DAY) {
 			double allowedCallsPerSecond = ALLOWED_CALLS_PER_DAY / SECONDS_PER_DAY;
-			double waitTime = (calls/allowedCallsPerSecond)-secondsSinceStart(startTime);
-			System.out.println("calls/day:"+callsPerDay);
-			System.out.println("wait time: "+waitTime);
+			double waitTime = (calls / allowedCallsPerSecond) - secondsSinceStart(startTime);
+			System.out.println("calls/day:" + callsPerDay);
+			System.out.println("wait time: " + waitTime);
 			try {
-				Thread.sleep((long) Math.ceil(waitTime*1000));
+				Thread.sleep((long) Math.ceil(waitTime * 1000));
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 	}

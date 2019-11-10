@@ -49,10 +49,6 @@ public class VirusChecker {
 		this.file = file;
 	}
 	
-	public static void main(String[] args){
-		File test = new File(System.getProperty("user.dir"), MALICIOUS_TEST_FILE);
-	}
-	
 	//Checks a file for its size and then uploads it for 
 	public void requestScan(){
 		//Set URL based on size of file to upload
@@ -69,9 +65,9 @@ public class VirusChecker {
 				RequestForUploadResponse urlResponse = httpClient.execute(requestForUpload, requestForUploadResponseHandler);
 				uploadRequestURL = urlResponse.upload_url;
 			} catch (ClientProtocolException e) {
-				e.printStackTrace();
+				e.getMessage();
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.getMessage();
 			}
 		} else {
 			System.out.println(file.getName()+" TOO BIG TO SCAN");
@@ -93,9 +89,9 @@ public class VirusChecker {
 				this.scanResponse = scanResponse;
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			e.getMessage();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 	
@@ -106,9 +102,9 @@ public class VirusChecker {
 			try {
 				reportResponse = httpClient.execute(reportRequest, reportResponseHandler);
 			} catch (ClientProtocolException e) {
-				e.printStackTrace();
+				e.getMessage();
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.getMessage();
 			}
 			this.results = reportResponse;
 			return new VirusCheck(id, url, reportResponse);

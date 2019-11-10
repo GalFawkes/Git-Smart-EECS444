@@ -52,9 +52,9 @@ public class RepositoryHandler {
 			FileUtils.copyURLToFile(url,file);
 			this.repository = file;
 		} catch(MalformedURLException mfe){
-			mfe.printStackTrace();
+			mfe.getMessage();
 		}catch (IOException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 	
@@ -145,7 +145,7 @@ public class RepositoryHandler {
 		    }
 		  }
 		  catch (Exception e) {
-		    e.printStackTrace();
+		    e.getMessage();
 		    return false;
 		  }
 	}
