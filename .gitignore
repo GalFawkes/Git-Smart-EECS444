@@ -6,3 +6,4 @@
 *.pdf
 *.out
 *.gz
+Webscraper/__pycache__/*
