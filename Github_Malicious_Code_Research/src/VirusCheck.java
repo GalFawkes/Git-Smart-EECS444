@@ -40,7 +40,7 @@ public class VirusCheck {
 			return id+com+
 					getRepo()+com+
 					url+com+
-					getGuiLink()+com+
+					"N/A"+com+
 					"Download Error"+com+
 					"\n";
 		}

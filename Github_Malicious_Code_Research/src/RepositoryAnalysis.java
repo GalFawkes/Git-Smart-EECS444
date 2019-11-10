@@ -28,6 +28,11 @@ public class RepositoryAnalysis {
 		ArrayList<VirusChecker> checks = new ArrayList<VirusChecker>();
 		
 		int repos = getNumberOfRepos(repoFile);
+
+		System.out.println("***Github Repository Analysis***\n");
+		System.out.println("Analyzing "+repos+" repos in "+repoFile.getPath());
+		System.out.println("Writing results to "+results.getPath());
+		System.out.println();
 		
 		int scannedRepositories=0;
 		while(resultsPrinted < checks.size() || scannedRepositories<repos){
@@ -41,6 +46,8 @@ public class RepositoryAnalysis {
 				VirusChecker vc = new VirusChecker(scannedRepositories, repo, rph.repository);
 				if(rph.repository != null){	
 					vc.requestScan();
+				}else{
+					vc.setStart();
 				}
 				checks.add(vc);
 				calls += vc.calls;
@@ -49,15 +56,13 @@ public class RepositoryAnalysis {
 			}
 			
 			//handle any unretrieved results
-			for(int i=resultsPrinted; i<checks.size(); i++){
-				if(checks.get(i).getWaitTime()<0){
-					calls++;
-					flowControl(calls, startTime);
-					System.out.println("retrieving...  "+checks.get(i).url);
-					VirusCheck response = checks.get(i).retrieveResponse();
-					writeToFile(results, response.toCSV());
-					resultsPrinted++;
-				}
+			for(int i=resultsPrinted; i<checks.size() && checks.get(i).getWaitTime()<0; i++){
+				calls++;
+				flowControl(calls, startTime);
+				System.out.println("retrieving...  "+checks.get(i).url);
+				VirusCheck response = checks.get(i).retrieveResponse();
+				writeToFile(results, response.toCSV());
+				resultsPrinted++;
 			}
 		}
 		
@@ -84,7 +89,7 @@ public class RepositoryAnalysis {
 			}
 			reader.close();
 		} catch (IOException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 			System.exit(1);
 		}
 		return repos;
@@ -102,7 +107,7 @@ public class RepositoryAnalysis {
 			ret = reader.readLine();
 			reader.close();
 		} catch (IOException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 			System.exit(1);
 		}
 		return ret;
@@ -116,7 +121,7 @@ public class RepositoryAnalysis {
 			writer.write(string);
 			writer.close();
 		} catch (IOException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 			System.exit(1);
 		}
 	}
@@ -127,8 +132,8 @@ public class RepositoryAnalysis {
 		int lastTrialNum = 0;
 		
 		for(File file : resultFiles){
-			String[] spaceSplit = file.getName().split(" ");
-			if (spaceSplit.length > 0) {
+			String[] spaceSplit = file.getName().split("_");
+			if (spaceSplit.length > 1) {
 				String[] dotSplit = spaceSplit[1].split("\\.");
 				if (dotSplit.length > 0) {
 					int trialNum = Integer.parseInt(dotSplit[0]);
@@ -139,7 +144,7 @@ public class RepositoryAnalysis {
 			}
 		}
 		
-		return new File(resultsFolder.getAbsolutePath() + "\\Trial " + (lastTrialNum + 1) + ".csv");
+		return new File(resultsFolder.getAbsolutePath() + "\\Trial_" + (lastTrialNum + 1) + ".csv");
 	}
 
 	public static String resultsToString(String repository, VirusCheck result) {
@@ -159,7 +164,7 @@ public class RepositoryAnalysis {
 			try {
 				Thread.sleep((long) Math.ceil(waitTime * 1000));
 			} catch (InterruptedException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			}
 		}
 	}

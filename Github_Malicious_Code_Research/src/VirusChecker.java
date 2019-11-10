@@ -65,9 +65,9 @@ public class VirusChecker {
 				RequestForUploadResponse urlResponse = httpClient.execute(requestForUpload, requestForUploadResponseHandler);
 				uploadRequestURL = urlResponse.upload_url;
 			} catch (ClientProtocolException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			} catch (IOException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			}
 		} else {
 			System.out.println(file.getName()+" TOO BIG TO SCAN");
@@ -89,10 +89,14 @@ public class VirusChecker {
 				this.scanResponse = scanResponse;
 			}
 		} catch (ClientProtocolException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (IOException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void setStart(){
+		startTime = System.currentTimeMillis();
 	}
 	
 	public VirusCheck retrieveResponse(){
@@ -102,9 +106,9 @@ public class VirusChecker {
 			try {
 				reportResponse = httpClient.execute(reportRequest, reportResponseHandler);
 			} catch (ClientProtocolException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			} catch (IOException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			}
 			this.results = reportResponse;
 			return new VirusCheck(id, url, reportResponse);

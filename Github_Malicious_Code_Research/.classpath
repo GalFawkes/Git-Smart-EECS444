@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="lib/httpcomponents-client-4.5.10/lib/httpmime-4.5.10.jar"/>
 	<classpathentry kind="lib" path="lib/httpcomponents-client-4.5.10/lib/jna-4.5.2.jar"/>
 	<classpathentry kind="lib" path="lib/httpcomponents-client-4.5.10/lib/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/short/compusec-f2019-project/Github_Malicious_Code_Research/lib/org.eclipse.jgit-5.5.1.201910021850-r.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
