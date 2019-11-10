@@ -133,7 +133,7 @@ public class RepositoryAnalysis {
 		
 		for(File file : resultFiles){
 			String[] spaceSplit = file.getName().split("_");
-			if (spaceSplit.length > 1) {
+			if (spaceSplit.length > 0) {
 				String[] dotSplit = spaceSplit[1].split("\\.");
 				if (dotSplit.length > 0) {
 					int trialNum = Integer.parseInt(dotSplit[0]);
