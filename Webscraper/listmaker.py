@@ -20,7 +20,7 @@ def getProjectList(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     projectList = []
-    reg = re.compile("/\w+/\w+")
+    reg = re.compile("/[\w\-]+/[\w\-]+")
     # To download the whole data set, let's do a for loop through all a tags
     makeProjectList(reg, projectList, soup)
     projectList = list(dict.fromkeys(projectList))
@@ -42,7 +42,7 @@ def getTopics():
     response = requests.get("https://github.com/topics/")
     soup = BeautifulSoup(response.text, "html.parser")
     topicList = []
-    reg = re.compile("/topics/\w+")
+    reg = re.compile("/topics/[\w\-]+")
     for i in range(36, len(soup.findAll('a'))):
         one_a_tag = soup.findAll('a')[i]
         target = one_a_tag.get('href')
