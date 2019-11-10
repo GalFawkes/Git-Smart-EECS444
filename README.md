@@ -4,9 +4,14 @@ Group Members: Steven Nyeo (EECS 444), Patrick Hogrell (EECS 349), Zubair Mukhi 
 
 ## Repo Analysis Tool
 How to use GitHub repo analysis tool with Java:
-1. I used Eclipse to write this, but it really doesn't matter as long as you can build the project
-2. There's a class called `RepositoryAnalysis.java`. In it is a method called `analyzeRepos()` that takes a csv of github repositories and tests each one, writing the results to a file in the results folder.
-3. To use this,
+1. Navigate to Github_Malicious_Code_Research folder
+2. Run GitHub_VT_Repository_Analysis_Tool.jar with the filepath of your list of repositories as the first arguments
+ex. java -jar GitHub_VT_Repository_Analysis_Tool.jar "C:\Users\short\compusec-f2019-project\Webscraper\scraperresults.csv"
+3. The tool will tell you where it is writing the results, but basically it's gonna create a new file in the results folder to write its results to:
+***Github Repository Analysis***
+
+Analyzing 964 repos in C:\Users\short\compusec-f2019-project\Webscraper\scraperresults.csv
+Writing results to C:\Users\short\compusec-f2019-project\Github_Malicious_Code_Research\results\Trial_2.csv
 
 
 ## Webscraper
