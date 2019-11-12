@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;Github_Malicious_Code_Research&apos;" deleteContents="false" description="Delete resource &apos;Github_Malicious_Code_Research&apos;" element1="/Github_Malicious_Code_Research" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1573353857748"/>
-</session>

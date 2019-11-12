@@ -7,3 +7,5 @@
 *.out
 *.gz
 Webscraper/__pycache__
+.metadata
+.recommenders
