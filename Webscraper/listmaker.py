@@ -51,6 +51,9 @@ def getTopics():
             if not "site" in rmt.group():
                 if not "about" in rmt.group():
                     topicList.append("https://github.com" + rmt.group())
+    topicList.append("https://github.com/topics/poc")
+    topicList.append("https://github.com/topics/exploit")
+    topicList.append("https://github.com/topics/vulnerability")
     topicList = list(dict.fromkeys(topicList))
     return topicList
 

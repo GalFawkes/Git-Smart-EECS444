@@ -7,9 +7,9 @@ if(len(sys.argv) < 2):
     print("Usage: python webscraper.py <number of hours>")
 else:
     try:
-        time = int(sys.argv[1]) * 4
-        print(str(time) + " iterations!")
-        for x in range(1, time): #15 min between scan, 25 hours of scanning
+        count = int(sys.argv[1]) * 4
+        print(str(count) + " iterations!")
+        for x in range(1, count): #15 min between scan, 25 hours of scanning
             print("Iteration " + str(x) + " at time " +  datetime.datetime.now().strftime("%H:%M:%S"))
             repoList = scrape.getAllValues()
             scrape.exportToCSV("scraperresults.csv", repoList)
