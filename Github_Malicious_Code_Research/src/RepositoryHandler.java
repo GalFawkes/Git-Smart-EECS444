@@ -41,25 +41,44 @@ public class RepositoryHandler {
 		rph.close();
 	}
 	
-	public RepositoryHandler(String URL){
+	public RepositoryHandler(String url){
+		URL tarUrl = null;
+		URL zipUrl = null;
 		try {
-			//setting URL
-			URL url = new URL(URL+GIT_DOWNLOAD_TAR_URL);
-			this.url = url;
-			
-			//Downloading and setting repository
-			String[] tokens = url.toString().split("/");
-			String filename = tokens[tokens.length-3];
-			File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+TAR_EXTENSION);
-			FileUtils.copyURLToFile(url,file);
-			this.repository = file;
-		} catch(MalformedURLException mfe){
-			System.out.println(mfe.getMessage());
-		}catch(FileNotFoundException e){
-			System.out.println("Error: Could not find:"+ e.getMessage());
-		}
-		catch (IOException e) {
+			tarUrl = new URL(url+GIT_DOWNLOAD_TAR_URL);
+			zipUrl = new URL(url+GIT_DOWNLOAD_ZIP_URL);
+		} catch (MalformedURLException e) {
 			System.out.println(e.getMessage());
+		}
+		
+		String[] tokens = url.toString().split("/");
+		String filename = tokens[tokens.length-1];
+		
+		if(tarUrl != null && zipUrl != null){
+			try{
+				File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+TAR_EXTENSION);
+				FileUtils.copyURLToFile(tarUrl,file);
+				this.url = tarUrl;
+				this.repository = file;
+			} catch (FileNotFoundException e){
+				try{
+					File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+ZIP_EXTENSION);
+					FileUtils.copyURLToFile(zipUrl,file);
+					this.url = zipUrl;
+					this.repository = file;
+				} catch(FileNotFoundException nfe){
+					System.out.println("Error: Could not find:"+ nfe.getMessage());
+					this.url = tarUrl;
+				} catch (IOException e1) {
+					e1.printStackTrace();
+					this.url = tarUrl;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				this.url = tarUrl;
+			}
+		} else {
+			this.url = tarUrl;
 		}
 	}
 	
@@ -67,46 +86,6 @@ public class RepositoryHandler {
 		if(repository != null){
 			repository.delete();
 		}
-	}
-	
-	public File downloadRepo(String URL){
-		URL tarUrl = null;
-		URL zipUrl = null;
-		try {
-			tarUrl = new URL(URL+GIT_DOWNLOAD_TAR_URL);
-			zipUrl = new URL(URL+GIT_DOWNLOAD_ZIP_URL);
-		} catch (MalformedURLException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		String[] tokens = URL.toString().split("/");
-		String filename = tokens[tokens.length-1];
-		
-		if(tarUrl != null && zipUrl != null){
-			try{
-				File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+TAR_EXTENSION);
-				FileUtils.copyURLToFile(tarUrl,file);
-				return file;
-			} catch (FileNotFoundException e){
-				try{
-					File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+ZIP_EXTENSION);
-					FileUtils.copyURLToFile(zipUrl,file);
-					return file;
-				} catch(FileNotFoundException nfe){
-					System.out.println("Error: Could not find:"+ nfe.getMessage());
-					return null;
-				} catch (IOException e1) {
-					e1.printStackTrace();
-					return null;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-		} else {
-			return null;
-		}
-		
 	}
 	
 	private boolean emptyAndDelete(File file){
