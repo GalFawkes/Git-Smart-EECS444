@@ -58,16 +58,7 @@ def getTopics():
     return topicList
 
 def exportToCSV(path, projectList):
-    f = open(path, "r")
-    line = f.readline()
-    currentList = []
-    while line:
-        currentList.append(line)
-        line = f.readline()
-    f.close()
     f = open(path, "a+")
-    for url in line:
-        projectList.append(url)
     for link in projectList:
         f.write(link+"\n")
     f.close()
