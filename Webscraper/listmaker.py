@@ -31,7 +31,7 @@ def makeProjectList(reg, projectList, soup):
     for i in range(36,len(soup.findAll('a'))): #'a' tags are for links
         one_a_tag = soup.findAll('a')[i]
         target = one_a_tag.get('href')
-        rmt = reg.match(target)
+        rmt = regexTest(target)
         if rmt is not None:
             if not "topics" in rmt.group():
                 if not "site" in rmt.group():
@@ -42,7 +42,7 @@ def getTopics():
     response = requests.get("https://github.com/topics/")
     soup = BeautifulSoup(response.text, "html.parser")
     topicList = []
-    reg = re.compile("/topics/[\w\-]+")
+    reg = re.compile("/topics/[\w\-\.]+")
     for i in range(36, len(soup.findAll('a'))):
         one_a_tag = soup.findAll('a')[i]
         target = one_a_tag.get('href')
@@ -83,3 +83,9 @@ def cleanupCSV(path):
     for url in topicsList:
         f.write(url)
     f.close()
+
+def regexTest(target):
+    reg = re.compile("/[\w\-\.]+/[\w\-\.]+")
+    reg2 = re.compile("https://github.com")
+    target = reg2.sub("", target)
+    return reg.match(target)
