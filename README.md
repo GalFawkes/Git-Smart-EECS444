@@ -19,4 +19,4 @@ Writing results to C:\Users\short\compusec-f2019-project\Github_Malicious_Code_R
 `cd Webscraper`
 `pip install -r requirements.txt`
 ### Other notes
-Currently, this scans the topics page of GitHub and pulls any new repositories into `scraperresults.csv`. It's configured to run every 15 mins for five hours via the loops in webscraper.py. Stretch goals are to allow for interactive time-setting via the application or as arguments on the command line
+Currently, this scans the topics page of GitHub and pulls any new repositories into `scraperresults.csv`. It's configured to run every 15 mins for several hours via the loops in webscraper.py. Stretch goals are to allow for interactive time-setting via the application or as arguments on the command line
