@@ -56,6 +56,7 @@ public class RepositoryAnalysis {
 			}
 			
 			//handle any unretrieved results
+			//System.out.println("repo: "+checks.get(resultsPrinted).id+"\nwaitTime: "+checks.get(resultsPrinted).getWaitTime());
 			for(int i=resultsPrinted; i<checks.size() && checks.get(i).getWaitTime()<0; i++){
 				calls++;
 				flowControl(calls, startTime);

@@ -71,6 +71,7 @@ public class VirusChecker {
 			}
 		} else {
 			System.out.println(file.getName()+" TOO BIG TO SCAN");
+			startTime = System.currentTimeMillis();
 			return;
 		}
 

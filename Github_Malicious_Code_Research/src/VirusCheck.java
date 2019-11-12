@@ -62,18 +62,22 @@ public class VirusCheck {
 	
 	public String getGuiLink(){
 		ArrayList<String> components = new ArrayList<String>();
-		String[] parts = response.permalink.split("/");
-		for(int i=0; i<parts.length; i++){
-			components.add(parts[i]);
+		if(response.permalink != null){
+			String[] parts = response.permalink.split("/");
+			for(int i=0; i<parts.length; i++){
+				components.add(parts[i]);
+			}
+			components.add(3, "gui");
+			components.remove(components.size()-1);
+			components.remove(components.size()-1);
+			components.add("detection");
+			String url = "";
+			for(String component : components){
+				url += component+"/";
+			}
+			return url;
+		} else {
+			return "N/A";
 		}
-		components.add(3, "gui");
-		components.remove(components.size()-1);
-		components.remove(components.size()-1);
-		components.add("detection");
-		String url = "";
-		for(String component : components){
-			url += component+"/";
-		}
-		return url;
 	}
 }
