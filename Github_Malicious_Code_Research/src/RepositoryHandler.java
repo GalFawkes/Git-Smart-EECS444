@@ -24,9 +24,11 @@ import com.google.gson.Gson;
 
 public class RepositoryHandler {
 	
-	public static String GIT_DOWNLOAD_URL = "/archive/master.tar.gz";
+	public static String GIT_DOWNLOAD_TAR_URL = "/archive/master.tar.gz";
+	public static String GIT_DOWNLOAD_ZIP_URL = "/archive/trunk.zip";
 	public static String TEMP_FOLDER = "\\temp\\";
 	public static String TAR_EXTENSION = ".tar.gz";
+	public static String ZIP_EXTENSION = ".zip";
 	
 	public static String TEST_SCAN = "C:\\Users\\short\\compusec-f2019-project\\Github Malicious Code Research\\testFiles\\testScan";
 	
@@ -42,7 +44,7 @@ public class RepositoryHandler {
 	public RepositoryHandler(String URL){
 		try {
 			//setting URL
-			URL url = new URL(URL+GIT_DOWNLOAD_URL);
+			URL url = new URL(URL+GIT_DOWNLOAD_TAR_URL);
 			this.url = url;
 			
 			//Downloading and setting repository
@@ -65,6 +67,46 @@ public class RepositoryHandler {
 		if(repository != null){
 			repository.delete();
 		}
+	}
+	
+	public File downloadRepo(String URL){
+		URL tarUrl = null;
+		URL zipUrl = null;
+		try {
+			tarUrl = new URL(URL+GIT_DOWNLOAD_TAR_URL);
+			zipUrl = new URL(URL+GIT_DOWNLOAD_ZIP_URL);
+		} catch (MalformedURLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		String[] tokens = URL.toString().split("/");
+		String filename = tokens[tokens.length-1];
+		
+		if(tarUrl != null && zipUrl != null){
+			try{
+				File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+TAR_EXTENSION);
+				FileUtils.copyURLToFile(tarUrl,file);
+				return file;
+			} catch (FileNotFoundException e){
+				try{
+					File file = new File(System.getProperty("user.dir")+TEMP_FOLDER+filename+ZIP_EXTENSION);
+					FileUtils.copyURLToFile(zipUrl,file);
+					return file;
+				} catch(FileNotFoundException nfe){
+					System.out.println("Error: Could not find:"+ nfe.getMessage());
+					return null;
+				} catch (IOException e1) {
+					e1.printStackTrace();
+					return null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		} else {
+			return null;
+		}
+		
 	}
 	
 	private boolean emptyAndDelete(File file){
