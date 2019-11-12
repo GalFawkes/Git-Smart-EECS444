@@ -132,20 +132,23 @@ public class RepositoryAnalysis {
 		File[] resultFiles = resultsFolder.listFiles();
 		int lastTrialNum = 0;
 		
-		for(File file : resultFiles){
-			String[] spaceSplit = file.getName().split("_");
-			if (spaceSplit.length > 1) {
-				String[] dotSplit = spaceSplit[1].split("\\.");
-				if (dotSplit.length > 0) {
-					int trialNum = Integer.parseInt(dotSplit[0]);
-					if(trialNum > lastTrialNum){
-						lastTrialNum = trialNum;
+		if(resultFiles != null){
+			for(File file : resultFiles){
+				String[] spaceSplit = file.getName().split("_");
+				if (spaceSplit.length > 1) {
+					String[] dotSplit = spaceSplit[1].split("\\.");
+					if (dotSplit.length > 0) {
+						int trialNum = Integer.parseInt(dotSplit[0]);
+						if(trialNum > lastTrialNum){
+							lastTrialNum = trialNum;
+						}
 					}
 				}
 			}
+			return new File(resultsFolder.getAbsolutePath() + "\\Trial_" + (lastTrialNum + 1) + ".csv");
+		}else{
+			return new File(resultsFolder.getAbsolutePath() + "\\Trial_1.csv");
 		}
-		
-		return new File(resultsFolder.getAbsolutePath() + "\\Trial_" + (lastTrialNum + 1) + ".csv");
 	}
 
 	public static String resultsToString(String repository, VirusCheck result) {
