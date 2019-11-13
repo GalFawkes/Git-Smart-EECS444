@@ -54,6 +54,11 @@ def getTopics():
     topicList.append("https://github.com/topics/poc")
     topicList.append("https://github.com/topics/exploit")
     topicList.append("https://github.com/topics/vulnerability")
+    topicList.append("https://github.com/topics/malware")
+    topicList.append("https://github.com/topics/malware-samples")
+    topicList.append("https://github.com/topics/malwareanalysis")
+    topicList.append("https://github.com/topics/wannacry")
+    topicList.append("https://github.com/topics/ransomware")
     topicList = list(dict.fromkeys(topicList))
     return topicList
 
