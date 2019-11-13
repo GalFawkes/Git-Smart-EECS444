@@ -23,10 +23,11 @@ import org.apache.http.util.EntityUtils;
 import com.google.gson.Gson;
 
 public class RepositoryHandler {
+	public static String FS = System.getProperty("file.separator");
 	
 	public static String GIT_DOWNLOAD_TAR_URL = "/archive/master.tar.gz";
 	public static String GIT_DOWNLOAD_ZIP_URL = "/archive/trunk.zip";
-	public static String TEMP_FOLDER = "\\temp\\";
+	public static String TEMP_FOLDER = FS+"temp"+FS;
 	public static String TAR_EXTENSION = ".tar.gz";
 	public static String ZIP_EXTENSION = ".zip";
 	

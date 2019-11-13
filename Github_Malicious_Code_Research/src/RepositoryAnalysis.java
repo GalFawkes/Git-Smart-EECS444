@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class RepositoryAnalysis {
+	public static String FS = System.getProperty("file.separator");
+	
 	public static double ALLOWED_CALLS_PER_DAY = 19000;
 	public static double SECONDS_PER_DAY = 86400;
 
-	public static String resultsDirectory = "\\results\\";
+	public static String resultsDirectory = FS+"results"+FS;
 	public static String header = "Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method\n";
 
 	public static void main(String[] args) {
@@ -145,9 +147,9 @@ public class RepositoryAnalysis {
 					}
 				}
 			}
-			return new File(resultsFolder.getAbsolutePath() + "\\Trial_" + (lastTrialNum + 1) + ".csv");
+			return new File(resultsFolder.getAbsolutePath() + FS + "Trial_" + (lastTrialNum + 1) + ".csv");
 		}else{
-			return new File(resultsFolder.getAbsolutePath() + "\\Trial_1.csv");
+			return new File(resultsFolder.getAbsolutePath() + FS + "Trial_1.csv");
 		}
 	}
 
