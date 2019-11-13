@@ -16,8 +16,43 @@ public class RepositoryAnalysis {
 	public static String header = "Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method\n";
 
 	public static void main(String[] args) {
-		File repos = new File(args[0]);
-		analyzeRepos(repos);
+		if(args.length > 0){
+			switch(args[0]){
+			case "-h":
+				System.out.println("Usage:\n\t-h: help\n\t-a [repoList filename]: analyze list of repos from file\n\t-s [github repo URL]: analyze single repo");
+				break;
+			case "-a":
+				File repos = new File(args[1]);
+				analyzeRepos(repos);
+				break;
+			case "-s":
+				String repo = args[1];
+				analyzeRepo(repo);
+				break;
+			default:
+				System.out.println("Error: use -h flag to see usage");
+				break;
+			}
+		} else {
+			System.out.println("Error: use -h flag to see usage");
+		}
+	}
+	
+	public static void analyzeRepo(String repoUrl){
+		System.out.println("downloading... "+repoUrl);
+		RepositoryHandler rph = new RepositoryHandler(repoUrl);
+		System.out.println("scanning...    "+repoUrl);
+		VirusChecker vc = new VirusChecker(0, repoUrl, rph.repository);
+		if(rph.repository != null){	
+			vc.requestScan();
+		}else{
+			vc.setStart();
+		}
+		rph.close();
+		long singleWaitTime = 30000;
+		while(vc.getWaitTime() > VirusChecker.WAIT_TIME-singleWaitTime){};
+		System.out.println("retrieving...  "+vc.url);
+		System.out.println(vc.retrieveResponse().toCSV());
 	}
 
 	public static void analyzeRepos(File repoFile){
