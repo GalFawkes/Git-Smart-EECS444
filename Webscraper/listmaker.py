@@ -3,7 +3,7 @@ import urllib.request
 import urllib.parse
 import time
 import re
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup # BEAUTIFULSOUP
 
 def getAllValues():
     tList = getTopics()
