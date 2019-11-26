@@ -1,4 +1,0 @@
-Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method
-0,maven-plugins,https://github.com/apache/maven-plugins,https://www.virustotal.com/gui/file/cd4c0176713d9bb8d368537a64d4f26caa9a5936baa913d26388c54eb281aff0/detection/,[0/57],
-1,cocoon,https://github.com/apache/cocoon,N/A,[0/0],
-2,qpid,https://github.com/apache/qpid,https://www.virustotal.com/gui/file/2c4c2da1798c2c491e0227d25d46e31c54d609190afcf144de3490bcfbe09433/detection/,[0/60],
