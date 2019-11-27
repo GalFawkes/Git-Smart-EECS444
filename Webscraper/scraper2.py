@@ -1,7 +1,20 @@
 import requests
-import urllib.request
 import re
 from bs4 import BeautifulSoup  # BEAUTIFULSOUP
+
+
+def spiralOut(url, ttl):
+    ttl -= 1
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    projectList = []
+    # Step 1: Step back to user.
+
+    # Step 2: Find all of the user's repos, add to list.
+
+    # Step 3: Find Followers, call spiralOut on each one, handing URL and ttl.
+
+    # Step 4: Recurse until TTL = 0.
 
 
 def getAllValues():
@@ -66,7 +79,7 @@ def getTopics():
 def exportToCSV(path, projectList):
     f = open(path, "a+")
     for link in projectList:
-        f.write(link + "\n")
+        f.write(link+"\n")
     f.close()
 
 
