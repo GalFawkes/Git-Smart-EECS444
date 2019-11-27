@@ -4,17 +4,28 @@ from bs4 import BeautifulSoup  # BEAUTIFULSOUP
 
 
 def spiralOut(url, ttl):
-    ttl -= 1
+    projectList = []
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    projectList = []
     # Step 1: Step back to user.
-
+    reg = re.compile("https://github.com/[\w\-\.]+")
+    # Step 1.5: Match the user URL, hand to string
+    userURL = reg.match(url).group()
     # Step 2: Find all of the user's repos, add to list.
-
+    projectList.add(getRepos(userURL))
+    # Step 2.5: Terminate on base case.
+    if(ttl <= 0):
+        return projectList
     # Step 3: Find Followers, call spiralOut on each one, handing URL and ttl.
+    for follower in followerList:
+        projectList.add(spiralOut(follower, ttl - 1))
+    return projectList
 
-    # Step 4: Recurse until TTL = 0.
+
+def getRepos(url):
+    response = requests.get(url)
+    projectList = []
+    return projectList
 
 
 def getAllValues():
@@ -79,7 +90,7 @@ def getTopics():
 def exportToCSV(path, projectList):
     f = open(path, "a+")
     for link in projectList:
-        f.write(link+"\n")
+        f.write(link + "\n")
     f.close()
 
 
