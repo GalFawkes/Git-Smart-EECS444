@@ -13,7 +13,7 @@ public class RepositoryAnalysis {
 	public static double SECONDS_PER_DAY = 86400;
 
 	public static String resultsDirectory = FS+"results"+FS;
-	public static String header = "Project_id,Project name,Project link,VT link,VT detection result,Propogation link,Propogation method\n";
+	public static String header = "Project_id,Project name,Project link,VT link,VT detection result,Scan Result,Propogation link,Propogation method\n";
 
 	public static void main(String[] args) {
 		if(args.length > 0){

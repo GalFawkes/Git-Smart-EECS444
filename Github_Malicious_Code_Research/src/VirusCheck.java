@@ -34,7 +34,8 @@ public class VirusCheck {
 					getRepo()+com+
 					url+com+
 					getGuiLink()+com+
-					"["+response.positives+"/"+response.total+"]"+com+
+					response.positives+"/"+response.total+com+
+					getStatus()+com+
 					"\n";
 		} else {
 			return id+com+
@@ -42,6 +43,7 @@ public class VirusCheck {
 					url+com+
 					"N/A"+com+
 					"Download Error"+com+
+					"ERROR"+com+
 					"\n";
 		}
 	}
