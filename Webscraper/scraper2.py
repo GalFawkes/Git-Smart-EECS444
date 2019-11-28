@@ -35,7 +35,7 @@ def spiralOut(url, ttl):
         projectList.append(project)
     # Step 2.5: Terminate on base case.
     if(ttl <= 0):
-        print("TTL:", ttl)
+        print("TTL:", ttl, "| Username: " + uName)
         return projectList
     # Step 3: Find Followers, call spiralOut on each one, handing URL and ttl.
     for follower in followerList:
