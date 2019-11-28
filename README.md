@@ -22,3 +22,5 @@ Writing results to C:\Users\short\compusec-f2019-project\Github_Malicious_Code_R
 python webscraper.py <ttl> "<Starting URL>"
 ### Other notes
 This starts on a repo and spirals out from there. It takes a long time if you set the TTL too high, but then again, so do all the best things, right?
+TTL = 3 takes hours and generated 86k entries!
+Next test, run it on https://github.com/mikesiko/PracticalMalwareAnalysis-Labs
