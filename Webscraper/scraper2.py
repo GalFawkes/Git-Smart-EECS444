@@ -49,7 +49,7 @@ def spiralOut(url, ttl):
 
 
 def getRepos(url, uName):
-    print("URL: " + url + ", UserName: " + uName)
+    print("URL: " + url + ", Username: " + uName)
     response = requests.get(url)
     reg = re.compile("/" + uName + "/[\w\-\.]+")
     projectList = []

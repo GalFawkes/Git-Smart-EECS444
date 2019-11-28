@@ -18,5 +18,7 @@ Writing results to C:\Users\short\compusec-f2019-project\Github_Malicious_Code_R
 ### Installation
 `cd Webscraper`
 `pip install -r requirements.txt`
+### Execution
+python webscraper.py <ttl> "<Starting URL>"
 ### Other notes
-Currently, this scans the topics page of GitHub and pulls any new repositories into `scraperresults.csv`. It's configured to run every 15 mins for several hours via the loops in webscraper.py. Stretch goals are to allow for interactive time-setting via the application or as arguments on the command line
+This starts on a repo and spirals out from there. It takes a long time if you set the TTL too high, but then again, so do all the best things, right?
