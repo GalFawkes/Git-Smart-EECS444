@@ -14,6 +14,6 @@ else:
         scrape.exportToCSV("scraperresults.csv", repoList)
         scrape.cleanupCSV("scraperresults.csv")
         endTime = datetime.now()
-        print("Duration: {} with {} levels of recursion.".format((endTime - startTime),ttl))
+        print("Duration: {} with {} levels of recursion.".format((endTime - startTime), ttl))
     except (TypeError, ValueError):
         print("Usage: python webscraper.py <TTL> <Starting URL>")

@@ -20,7 +20,7 @@ def cleanupCSV(path):
     f.close()
     f = open(path, "w")
     for url in topicsList:
-        print(url)
+        # print(url)
         f.write(url)
     f.close()
 
