@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup  # BEAUTIFULSOUP
 
 
 def spiralOut(url, ttl):
-    # print("URL: " + url)
+    print("TTL:", ttl, "| URL: " + url)
     projectList = []
     # Step 1: Get user URL from GitHub URL
     reg = re.compile("https://github.com/[\w\-\.]+")
@@ -39,7 +39,7 @@ def spiralOut(url, ttl):
         return projectList
     # Step 3: Find Followers, call spiralOut on each one, handing URL and ttl.
     for follower in followerList:
-        print("TTL:", ttl)
+        # print("TTL:", ttl)
         # print(follower)
         pl = spiralOut(follower, ttl - 1)
         for project in pl:
