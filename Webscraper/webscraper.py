@@ -11,5 +11,5 @@ else:
         repoList = scraper2.spiralOut(url, ttl)
         scrape.exportToCSV("scraperresults.csv", repoList)
         scrape.cleanupCSV("scraperresults.csv")
-    except (TypeError, ValueError) as e:
+    except (TypeError, ValueError):
         print("Usage: python webscraper.py <TTL> <Starting URL>")
