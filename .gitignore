@@ -3,7 +3,6 @@
 *.log
 .*.un~
 .*~
-*.pdf
 *.out
 *.gz
 *.pyc
