@@ -23,6 +23,11 @@ This webscraper is a recursive tree search that starts on a given repository URL
 TTL = 3 takes multiple hours and generated 86,000 entries
 ### Installation
 `cd Git-Smart-EECS444/Webscraper`
+
 `pip install -r requirements.txt`
 ### Execution
-python webscraper.py <ttl> <Starting URL>
+`python webscraper.py [ttl] [Starting URL]`
+
+
+## Report
+The report is available as both <a href="https://github.com/AnonMuk/Git-Smart-EECS444/blob/master/Report/project.pdf">project.pdf</a> and <a href="https://github.com/AnonMuk/Git-Smart-EECS444/blob/master/Report/Git%20Smart.pdf">Git Smart.pdf</a>.
